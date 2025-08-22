@@ -28,7 +28,7 @@ public class FareServiceImpl implements FareService {
     @Override
     public Flux<Fare> getAllF() {
         return fareRepository.findAll()
-                .doOnNext(fare -> log.info("Fare retrieved: {}", fare));
+                .doOnNext(fare -> System.out.println("Fare retrieved: " + fare));
     }
 
     @Override

@@ -11,7 +11,9 @@ pe\edu\vallegrande\ms_distribution\domain\models\Fare.class
 pe\edu\vallegrande\ms_distribution\msWaterDistributionApplication.class
 pe\edu\vallegrande\ms_distribution\application\services\impl\DistributionScheduleServiceImpl.class
 pe\edu\vallegrande\ms_distribution\application\config\GlobalCorsConfig.class
+pe\edu\vallegrande\ms_distribution\infrastructure\dto\request\DistributionScheduleCreateRequest$DistributionScheduleCreateRequestBuilder.class
 pe\edu\vallegrande\ms_distribution\application\services\impl\FareServiceImpl.class
+pe\edu\vallegrande\ms_distribution\infrastructure\dto\request\DistributionRouteCreateRequest$ZoneEntry$ZoneEntryBuilder.class
 pe\edu\vallegrande\ms_distribution\infrastructure\dto\response\DistributionRouteResponse$ZoneDetail$ZoneDetailBuilder.class
 pe\edu\vallegrande\ms_distribution\infrastructure\rest\DistributionScheduleRest.class
 pe\edu\vallegrande\ms_distribution\infrastructure\dto\request\DistributionRouteCreateRequest$ZoneEntry.class
@@ -37,7 +39,9 @@ pe\edu\vallegrande\ms_distribution\infrastructure\repository\DistributionProgram
 pe\edu\vallegrande\ms_distribution\infrastructure\dto\request\DistributionRouteCreateRequest.class
 pe\edu\vallegrande\ms_distribution\infrastructure\dto\ErrorMessage.class
 pe\edu\vallegrande\ms_distribution\infrastructure\exception\GlobalExceptionHandler.class
+pe\edu\vallegrande\ms_distribution\infrastructure\dto\request\FareCreateRequest$FareCreateRequestBuilder.class
 pe\edu\vallegrande\ms_distribution\infrastructure\exception\CustomException.class
+pe\edu\vallegrande\ms_distribution\infrastructure\dto\request\DistributionRouteCreateRequest$DistributionRouteCreateRequestBuilder.class
 pe\edu\vallegrande\ms_distribution\infrastructure\dto\response\DistributionRouteResponse.class
 pe\edu\vallegrande\ms_distribution\infrastructure\dto\response\FareResponse$FareResponseBuilder.class
 pe\edu\vallegrande\ms_distribution\domain\models\DistributionProgram$DistributionProgramBuilder.class

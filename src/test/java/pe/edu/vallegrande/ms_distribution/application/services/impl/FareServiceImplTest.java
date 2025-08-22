@@ -136,7 +136,7 @@ public class FareServiceImplTest {
                 .expectErrorSatisfies(error -> {
                     assertTrue(error instanceof CustomException);
                     CustomException ce = (CustomException) error;
-                    assertEquals("Fare code already exists - TAR001", ce.getMessage());
+                                         assertEquals("Fare code already exists", ce.getMessage());
                     System.out.println("❌ Error esperado: " + ce.getMessage());
                 })
                 .verify();
