@@ -935,3 +935,6 @@ Collection: receipts (Cabecera)
   },
   "created_at": ISODate("2023-06-10T09:00:00Z")
 }
+=======
+# TestDistribution
+>>>>>>> 489117b1379545859c38d0d1c6e133b4e9283239
