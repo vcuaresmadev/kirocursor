@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 🔒 Microservicio de Distribución de Agua - Universidad Valle Grande
 
 ## 🚨 **IMPORTANTE: Medidas de Seguridad Implementadas**
@@ -970,3 +971,21 @@ Collection: receipts (Cabecera)
 =======
 # TestDistribution
 >>>>>>> 489117b1379545859c38d0d1c6e133b4e9283239
+=======
+## Hi there 👋
+
+<!--
+**kirocursor/kirocursor** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+
+Here are some ideas to get you started:
+
+- 🔭 I’m currently working on ...
+- 🌱 I’m currently learning ...
+- 👯 I’m looking to collaborate on ...
+- 🤔 I’m looking for help with ...
+- 💬 Ask me about ...
+- 📫 How to reach me: ...
+- 😄 Pronouns: ...
+- ⚡ Fun fact: ...
+-->
+>>>>>>> 78be20a84b5b407c57fe243eb52ab5b80d6dd32b
