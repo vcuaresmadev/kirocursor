@@ -1,41 +1,40 @@
-# Multi-stage build para mayor seguridad
-FROM openjdk:17-jdk-slim AS builder
+# =========================
+# Etapa 1: Build seguro
+# =========================
+FROM maven:3.9.6-eclipse-temurin-17 AS builder
 
-# Usuario no-root para mayor seguridad
 RUN groupadd -r appuser && useradd -r -g appuser appuser
 
-# Copiar archivos del proyecto
 WORKDIR /app
-COPY pom.xml .
-COPY src ./src
 
-# Instalar dependencias y construir
+# Copiar pom.xml explícitamente
+COPY ./pom.xml /app/pom.xml
+RUN mvn dependency:go-offline -B
+
+# Copiar el resto del código
+COPY ./src /app/src
+
+# Compilar el JAR
 RUN mvn clean package -DskipTests
 
-# Imagen de producción
-FROM openjdk:17-jre-slim
+# =========================
+# Etapa 2: Producción segura
+# =========================
+FROM eclipse-temurin:17-jre-alpine
 
-# Usuario no-root para mayor seguridad
-RUN groupadd -r appuser && useradd -r -g appuser appuser
-
-# Crear directorio de logs
+RUN addgroup -S appuser && adduser -S appuser -G appuser
 RUN mkdir -p /app/logs && chown -R appuser:appuser /app
-
-# Cambiar al usuario no-root
 USER appuser
 
-# Puerto de la aplicación
+WORKDIR /app
+
 EXPOSE 8086
 
-# Variables de entorno por defecto
-ENV JAVA_OPTS="-Xmx512m -Xms256m -XX:+UseG1GC -XX:+UseContainerSupport"
+ENV JAVA_OPTS="-Xmx512m -Xms256m -XX:+UseG1GC"
 
-# Copiar JAR desde el builder
-COPY --from=builder --chown=appuser:appuser /app/target/*.jar app.jar
+COPY --from=builder --chown=appuser:appuser /app/target/*.jar /app/app.jar
 
-# Health check
-HEALTHCHECK --interval=30s --timeout=3s --start-period=60s --retries=3 \
-  CMD curl -f http://localhost:8086/actuator/health || exit 1
+HEALTHCHECK --interval=30s --timeout=5s --start-period=60s --retries=3 \
+  CMD wget --no-verbose --tries=1 --spider http://localhost:8086/actuator/health || exit 1
 
-# Comando de ejecución
-ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -jar app.jar"]
+ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -jar /app/app.jar"]

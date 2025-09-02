@@ -62,4 +62,4 @@ app:
     rate-limit:
       requests-per-minute: 1000 # Más permisivo en desarrollo
     cors:
-      allowed-origins: http://localhost:3000,http://localhost:8080,http://localhost:4200
+      allowed-origins: https://solid-halibut-pv749gjvjpw36469-4200.app.github.dev,http://localhost:8080,http://localhost:4200

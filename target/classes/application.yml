@@ -9,26 +9,38 @@ spring:
     resources:
       cache:
         period: 0
+  security:
+    # Configuración de seguridad
+    require-ssl: false # Solo para desarrollo local
 
 server:
      port: 8086
      forward-headers-strategy: framework
-cors:
-     allowed-origins: "*"
-     allowed-methods: GET,POST,PUT,DELETE,PATCH,OPTIONS,HEAD
-     allowed-headers: "*"
-     allow-credentials: true
-     max-age: 3600
+     # Configuración de seguridad del servidor
+     error:
+       include-stacktrace: never
+       include-message: never
+       include-binding-errors: never
+       include-exception: false
+
+# Configuración CORS más restrictiva (se maneja en SecurityConfig)
+# cors:
+#      allowed-origins: "*"
+#      allowed-methods: GET,POST,PUT,DELETE,PATCH,OPTIONS,HEAD
+#      allowed-headers: "*"
+#      allow-credentials: true
+#      max-age: 3600
 
 springdoc:
   swagger-ui:
     path: /swagger-ui.html
-    enabled: true
+    enabled: ${SWAGGER_ENABLED:false} # Solo habilitar en desarrollo
     urls:
       - url: /v3/api-docs
         name: API V1
   api-docs:
     path: /v3/api-docs
+    enabled: ${SWAGGER_ENABLED:false} # Solo habilitar en desarrollo
   default-produces-media-type: application/json
   paths-to-match: /api/**
 
@@ -36,14 +48,17 @@ management:
   endpoints:
     web:
       exposure:
-        include: health,info,metrics,prometheus
+        include: health # Solo endpoint de salud en producción
+        exclude: info,metrics,prometheus,env,configprops,beans
+      base-path: /actuator
   endpoint:
     health:
-      show-details: always
+      show-details: ${HEALTH_SHOW_DETAILS:never} # Nunca mostrar detalles en producción
+      show-components: always
     metrics:
-      enabled: true
+      enabled: ${METRICS_ENABLED:false} # Solo en desarrollo
     prometheus:
-      enabled: true
+      enabled: ${PROMETHEUS_ENABLED:false} # Solo en desarrollo
 
 app:
   name: Water Distribution Microservice

@@ -31,17 +31,9 @@ README2.md
 Database.md
 
 # Archivos de Docker
-Dockerfile
-docker-compose.yml
 .dockerignore
 
 # Archivos de Maven
 mvnw
 mvnw.cmd
-pom.xml
-
-# Archivos temporales
-*.tmp
-*.temp
-*.swp
-*.swo
+# ⚠️ Mantener pom.xml incluido

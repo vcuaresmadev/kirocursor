@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: pe.edu.vallegrande.ms_distribution.application.services.impl.DistributionRouteServiceImplTest
--------------------------------------------------------------------------------
-Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.250 s -- in pe.edu.vallegrande.ms_distribution.application.services.impl.DistributionRouteServiceImplTest

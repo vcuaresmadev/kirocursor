@@ -1,22 +1,27 @@
-version: '3.8'
+version: "3.8"
 
 services:
+  # ==========================
+  # 🟢 Backend ms-distribution
+  # ==========================
   ms-distribution:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: ms-distribution-dev
     ports:
       - "8086:8086"
     environment:
-      - SPRING_PROFILES_ACTIVE=dev
-      - MONGO_USERNAME=sistemajass
-      - MONGO_PASSWORD=ZC7O1Ok40SwkfEje
-      - MONGO_HOST=sistemajass.jn6cpoz.mongodb.net
-      - MONGO_DATABASE=JASS_DIGITAL
-      - SWAGGER_ENABLED=true
-      - METRICS_ENABLED=true
-      - PROMETHEUS_ENABLED=true
-      - HEALTH_SHOW_DETAILS=always
-      - JWT_SECRET=dev-secret-key-change-in-production
+      SPRING_PROFILES_ACTIVE: dev
+      MONGO_USERNAME: sistemajass
+      MONGO_PASSWORD: ZC7O1Ok40SwkfEje
+      MONGO_HOST: sistemajass.jn6cpoz.mongodb.net
+      MONGO_DATABASE: JASS_DIGITAL
+      SWAGGER_ENABLED: "true"
+      METRICS_ENABLED: "true"
+      PROMETHEUS_ENABLED: "true"
+      HEALTH_SHOW_DETAILS: always
+      JWT_SECRET: dev-secret-key-change-in-production
     volumes:
       - ./logs:/app/logs
     networks:
@@ -29,23 +34,27 @@ services:
       retries: 3
       start_period: 60s
 
-  # MongoDB local para desarrollo (opcional)
+  # ==========================
+  # 🟠 Base de datos MongoDB local (opcional)
+  # ==========================
   mongodb-local:
     image: mongo:6.0
     container_name: mongodb-local-dev
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=admin
-      - MONGO_INITDB_ROOT_PASSWORD=password123
-      - MONGO_INITDB_DATABASE=JASS_DIGITAL
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password123
+      MONGO_INITDB_DATABASE: JASS_DIGITAL
     ports:
       - "27017:27017"
     volumes:
       - mongodb_data:/data/db
-      - ./mongo-init:/docker-entrypoint-initdb.d
     networks:
       - ms-network
     restart: unless-stopped
 
+# ==========================
+# 🔵 Redes y volúmenes
+# ==========================
 networks:
   ms-network:
     driver: bridge
