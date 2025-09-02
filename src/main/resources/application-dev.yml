@@ -1,0 +1,65 @@
+# Configuración de DESARROLLO - Seguridad relajada para desarrollo
+spring:
+  security:
+    require-ssl: false # No forzar HTTPS en desarrollo
+  
+  # Configuración de MongoDB para desarrollo
+  data:
+    mongodb:
+      uri: mongodb+srv://${MONGO_USERNAME:sistemajass}:${MONGO_PASSWORD:ZC7O1Ok40SwkfEje}@sistemajass.jn6cpoz.mongodb.net/${MONGO_DATABASE:JASS_DIGITAL}?retryWrites=true&w=majority
+
+server:
+  port: 8086
+  # Configuración de seguridad del servidor para desarrollo
+  error:
+    include-stacktrace: always
+    include-message: always
+    include-binding-errors: always
+    include-exception: true
+
+# Swagger habilitado en desarrollo
+springdoc:
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui.html
+  api-docs:
+    enabled: true
+    path: /v3/api-docs
+
+# Endpoints de monitoreo habilitados en desarrollo
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+        exclude: env,configprops,beans,shutdown
+      base-path: /actuator
+  endpoint:
+    health:
+      show-details: always
+      show-components: always
+    metrics:
+      enabled: true
+    prometheus:
+      enabled: true
+
+# Configuración de logging para desarrollo
+logging:
+  level:
+    root: INFO
+    pe.edu.vallegrande: DEBUG
+    org.springframework.security: DEBUG
+    org.springframework.web: DEBUG
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %-5level - %logger{36} - %msg%n"
+
+# Configuración de seguridad para desarrollo
+app:
+  security:
+    jwt:
+      secret: dev-secret-key-change-in-production
+      expiration: 86400000 # 24 horas
+    rate-limit:
+      requests-per-minute: 1000 # Más permisivo en desarrollo
+    cors:
+      allowed-origins: http://localhost:3000,http://localhost:8080,http://localhost:4200

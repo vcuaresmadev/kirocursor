@@ -1,0 +1,70 @@
+{
+  "name": "MS Distribution - Spring Boot",
+  "image": "mcr.microsoft.com/devcontainers/java:17",
+  
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {},
+    "ghcr.io/devcontainers/features/java:1": {
+      "version": "17",
+      "installMaven": true
+    }
+  },
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "vscjava.vscode-java-pack",
+        "vscjava.vscode-spring-boot-dashboard",
+        "vscjava.vscode-spring-initializr",
+        "redhat.java",
+        "vscjava.vscode-maven",
+        "ms-vscode.vscode-json",
+        "yzhang.markdown-all-in-one",
+        "ms-vscode.vscode-docker"
+      ],
+      "settings": {
+        "java.configuration.updateBuildConfiguration": "automatic",
+        "java.compile.nullAnalysis.mode": "automatic",
+        "java.format.settings.url": "https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml",
+        "java.format.settings.profile": "GoogleStyle"
+      }
+    }
+  },
+
+  "remoteEnv": {
+    "SPRING_PROFILES_ACTIVE": "dev",
+    "MONGO_USERNAME": "sistemajass",
+    "MONGO_PASSWORD": "ZC7O1Ok40SwkfEje",
+    "MONGO_HOST": "sistemajass.jn6cpoz.mongodb.net",
+    "MONGO_DATABASE": "JASS_DIGITAL",
+    "SWAGGER_ENABLED": "true",
+    "METRICS_ENABLED": "true",
+    "PROMETHEUS_ENABLED": "true",
+    "HEALTH_SHOW_DETAILS": "always",
+    "JWT_SECRET": "dev-secret-key-change-in-production"
+  },
+
+  "forwardPorts": [8086, 27017],
+  
+  "portsAttributes": {
+    "8086": {
+      "label": "Spring Boot App",
+      "onAutoForward": "notify"
+    },
+    "27017": {
+      "label": "MongoDB",
+      "onAutoForward": "silent"
+    }
+  },
+
+  "postCreateCommand": "mvn clean install -DskipTests",
+  
+  "postStartCommand": "echo '🚀 MS Distribution está listo para ejecutarse!' && echo '📖 Revisa SECURITY_README.md para información de seguridad'",
+  
+  "mounts": [
+    "source=${localWorkspaceFolder}/logs,target=/workspaces/ms-distribution/logs,type=bind"
+  ],
+
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/ms-distribution,type=bind,consistency=cached",
+  "workspaceFolder": "/workspaces/ms-distribution"
+}

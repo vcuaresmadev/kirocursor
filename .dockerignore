@@ -1,0 +1,47 @@
+# Archivos de configuración sensibles
+.env
+.env.local
+.env.production
+.env.staging
+
+# Archivos de desarrollo
+*.log
+logs/
+target/
+!target/*.jar
+
+# Archivos de IDE
+.vscode/
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Archivos de Git
+.git/
+.gitignore
+
+# Archivos de documentación
+README.md
+README2.md
+Database.md
+
+# Archivos de Docker
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# Archivos de Maven
+mvnw
+mvnw.cmd
+pom.xml
+
+# Archivos temporales
+*.tmp
+*.temp
+*.swp
+*.swo

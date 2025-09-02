@@ -7,6 +7,7 @@ import org.springframework.web.cors.reactive.CorsWebFilter;
 import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
 
 @Configuration
+@Deprecated // Reemplazado por SecurityConfig
 public class GlobalCorsConfig {
 
     @Bean

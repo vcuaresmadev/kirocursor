@@ -1,3 +1,35 @@
+# 🔒 Microservicio de Distribución de Agua - Universidad Valle Grande
+
+## 🚨 **IMPORTANTE: Medidas de Seguridad Implementadas**
+
+Este proyecto ha sido configurado con **medidas de seguridad robustas** para prevenir la vulnerabilidad **API8:2023 Security Misconfiguration**.
+
+### 🛡️ **Características de Seguridad**
+- ✅ **Spring Security** configurado con WebFlux
+- ✅ **Headers de seguridad HTTP** (X-Frame-Options, X-XSS-Protection, etc.)
+- ✅ **Rate Limiting** para prevenir ataques DDoS
+- ✅ **Configuración CORS restrictiva**
+- ✅ **Control de endpoints sensibles**
+- ✅ **Configuración por entorno** (desarrollo vs producción)
+- ✅ **Docker con mejores prácticas de seguridad**
+
+### 📖 **Documentación de Seguridad**
+- **SECURITY_README.md** - Guía completa de seguridad
+- **scripts/security-check.sh** - Script de verificación (Linux/Mac)
+- **scripts/security-check.bat** - Script de verificación (Windows)
+
+### 🚀 **Ejecución Rápida**
+```bash
+# Desarrollo
+mvn spring-boot:run -Dspring-boot.run.profiles=dev
+
+# Verificar seguridad
+./scripts/security-check.sh  # Linux/Mac
+scripts/security-check.bat   # Windows
+```
+
+---
+
 # Análisis y Diseño de Entidades para Microservicios
 
 ## Microservicios Principales:
